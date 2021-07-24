@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card card-statistics">
+        <div class="row">
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">All Vendors</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{vendorData.all.length}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">Active</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{this.vendorData.active}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">Inactive</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{vendorData.inactive}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">Unverified</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{vendorData.unverified}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Latest Reviews</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Campaigns</th>
+                  <th>Date Registered</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of vendorData.all">
+                  <td>
+                    <div class="form-check form-check-flat">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        {{item.name}}
+                        <i class="input-helper"></i>
+                      </label>
+                    </div>
+                  </td>
+                  <td>{{item.email}}</td>
+                  <td>1</td>
+                  <td>{{item.created_at | date}}</td>
+                  <td>
+                      <button class="btn btn-danger">Deactivate</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

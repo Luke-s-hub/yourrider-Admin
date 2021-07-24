@@ -1,0 +1,36 @@
+.title{
+  color: rgb(40, 40, 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  mdb-icon{
+    color: #CA9132;
+  }
+}
+button.yes{
+  color: white;
+  background-color:  #30623C;
+
+  &:hover{
+      opacity: .5;
+  }
+}
+h5{
+  text-transform: uppercase;
+}
+button.no{
+  color: white;
+  background-color: #CA9132;
+
+  &:hover{
+      opacity: .5
+  }
+}
+
+.close-btn{
+  color: #CA9132;
+  font-size: 1.5em;
+  border: unset;
+  background-color: unset;
+}

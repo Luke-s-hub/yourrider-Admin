@@ -1,0 +1,55 @@
+<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="text-center bg-white navbar-brand-wrapper d-flex align-items-top justify-content-center">
+    <a class="navbar-brand brand-logo" routerLink="/dashboard">
+      <img src="assets/img/logo.png" alt="logo" /> </a>
+    <a class="navbar-brand brand-logo-mini" routerLink="/dashboard">
+      <img src="assets/img/favicon.png" alt="logo" /> </a>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center">
+    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize"
+      (click)="toggleIconOnlySidebar()">
+      <span class="mdi mdi-menu"></span>
+    </button>
+    <ul class="navbar-nav navbar-nav-right">
+      <!-- <li class="nav-item dropdown ml-4" ngbDropdown>
+        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" ngbDropdownToggle>
+          <i class="mdi mdi-bell-outline"></i>
+          <span class="count bg-success">0</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" ngbDropdownMenu
+          aria-labelledby="UserDropdown">
+          <a class="dropdown-item py-3 border-bottom">
+            <p class="mb-0 font-weight-medium float-left">You have 0 notifications </p>
+            <span class="badge badge-pill badge-primary float-right">View all</span>
+          </a>
+          <a class="dropdown-item preview-item py-3">
+            <div class="preview-thumbnail">
+              <i class="mdi mdi-alert m-auto text-primary"></i>
+            </div>
+            <div class="preview-item-content">
+              <h6 class="preview-subject font-weight-normal text-dark mb-1">Application Error</h6>
+              <p class="font-weight-light small-text mb-0"> Just now </p>
+            </div>
+          </a>
+        </div>
+      </li> -->
+      <li class="nav-item dropdown d-none d-xl-inline-flex" ngbDropdown>
+        <a class="nav-link dropdown-toggle" id="UserDropdown" ngbDropdownToggle>
+          <img class="img-xs rounded-circle" src="assets/images/faces/face1.jpg" alt="Profile image">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" ngbDropdownMenu aria-labelledby="UserDropdown">
+          <div class="dropdown-header text-center">
+            <img class="img-md rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image">
+            <p class="mb-1 mt-3 font-weight-semibold">{{helper.getUser().name}}</p>
+            <p class="font-weight-light text-muted mb-0">{{helper.getUser().role}}</p>
+          </div>
+          <a (click)="auth.logout()" class="dropdown-item">Sign Out<i class="dropdown-item-icon ti-power-off"></i></a>
+        </div>
+      </li>
+    </ul>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto pr-0" type="button"
+      (click)="toggleRightSidebar()">
+      <span class="mdi mdi-menu"></span>
+    </button>
+  </div>
+</nav>

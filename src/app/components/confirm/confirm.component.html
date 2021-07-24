@@ -1,0 +1,17 @@
+<div mat-dialog-title class="title">
+  <p>Confirm</p>
+  <p>icon</p>
+</div>
+
+<mat-dialog-content>
+
+<div class="text-center">
+    <p>{{data.title}}</p>
+</div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button class="yes" (click)="yes()" mat-button [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  <button class="no" (click)="no()" mat-button mat-dialog-close>No</button>
+</mat-dialog-actions>

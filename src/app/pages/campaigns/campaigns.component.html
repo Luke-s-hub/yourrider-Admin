@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card card-statistics">
+        <div class="row">
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">All Companies</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{companyData.length}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">Active</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{this.companyData.length}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Latest Companies</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Company Email</th>
+                  <th>Company Phone</th>
+                  <th>Manager Name</th>
+                  <th>Manager Email</th>
+                  <th>Manager Phone</th>
+                  <th>Manager Photo</th>
+                  <th>CAC Certificate</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of companyData">
+                  <td>
+                    <div class="form-check form-check-flat">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        {{item.company_name}}
+                        <i class="input-helper"></i>
+                      </label>
+                    </div>
+                  </td>
+                  <td>{{item.company_email}}</td>
+                  <td>{{item.company_phone}}</td>
+                  <td>{{item.manager_name}}</td>
+                  <td>{{item.manager_email}}</td>
+                  <td>{{item.manager_phone}}</td>
+                  <td><a target="_blank" [href]="helper.getApiImageLink()+item.manager_photo">View</a></td>
+                  <td><a target="_blank" [href]="helper.getApiImageLink()+item.cac_certificate">View</a></td>
+                  <td>{{item.created_at | date}}</td>
+                  <td><button (click)="delete(item.id)" class="btn btn-sm btn-danger">Remove</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
