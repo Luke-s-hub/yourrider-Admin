@@ -12,12 +12,12 @@ import { HelperService } from 'src/app/services/helper/helper.service';
 export class RiderCodeComponent implements OnInit {
 
   loading:boolean = true
-
+  submit: boolean = false
   codeData: any
   company: any
 
   codeForm = this.fb.group({
-    company: ['', [Validators.required]],
+    company_id: [null, [Validators.required]],
     code: ['', [Validators.required]],
   })
 
@@ -69,12 +69,15 @@ export class RiderCodeComponent implements OnInit {
   }
 
   createCode(){
+    this.submit = true
     this.http.post(
       this.helper.getApiUrl()+'dashboard/create_code',
       this.codeForm.value,
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.helper.showSuccess('', data.message)
+      this.getCodeStats()
+      this.submit = false
     })
   }
 

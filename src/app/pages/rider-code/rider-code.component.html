@@ -6,7 +6,7 @@
               <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                    <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                    <i class="mdi mdi-barcode-scan text-primary mr-0 mr-sm-4 icon-lg"></i>
                     <div class="wrapper text-center text-sm-left">
                       <p class="card-text mb-0">All Codes</p>
                       <div class="fluid-container">
@@ -32,7 +32,7 @@
               <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
                 <div class="card-body">
                   <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                    <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                    <i class="mdi mdi mdi-close text-primary mr-0 mr-sm-4 icon-lg"></i>
                     <div class="wrapper text-center text-sm-left">
                       <p class="card-text mb-0">Inactive</p>
                       <div class="fluid-container">
@@ -44,6 +44,27 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="codeForm" (ngSubmit)="createCode()" >
+            <div class="form">
+              <select formControlName="company_id">
+                <option [value]="null">Select Company</option>
+                <option [value]="item.id" *ngFor="let item of company">{{item.name}}</option>
+              </select>
+            </div>
+            <div class="form">
+              <input type="text" formControlName="code" placeholder="Enter Rider Identification code">
+            </div>
+            <div class="form">
+              <button [disabled]="!codeForm.valid" type="submit" class="btn btn-primary btn-lg">
+                <span *ngIf="!submit">Submit</span>
+                <span *ngIf="submit">Please wait...</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div class="row">

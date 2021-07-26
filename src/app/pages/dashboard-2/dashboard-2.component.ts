@@ -36,6 +36,12 @@ export class Dashboard2Component implements OnInit {
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.dashboardData = data.data
+      this.humanResouceDoughnutChartLabels = ["Active", "Inactive", "Unverified"];
+      this.humanResouceDoughnutChartData = [
+        {
+          data: [this.dashboardData.active, this.dashboardData.unverified, this.dashboardData.inactive]
+        }
+      ];
       console.log(data.data)
     })
   }
@@ -160,4 +166,35 @@ export class Dashboard2Component implements OnInit {
       backgroundColor: "#8862e0"
     }
   ];
+
+
+  humanResouceDoughnutChartLabels = [];
+  humanResouceDoughnutChartData = [];
+  humanResouceDoughnutChartOptions = {
+    cutoutPercentage: 75,
+    animationEasing: "easeOutBounce",
+    animateRotate: true,
+    animateScale: false,
+    responsive: true,
+    maintainAspectRatio: true,
+    showScale: true,
+    legend: {
+      display: false
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    }
+  };
+  humanResouceDoughnutChartColors = [
+    {
+      backgroundColor: ["#62d896", "#3096f3", "#ee5f56"],
+      borderColor: ["#62d896", "#3096f3", "#ee5f56"]
+    }
+  ];
+
 }

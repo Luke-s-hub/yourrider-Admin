@@ -63,15 +63,15 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Users Statistics</h4>
-        <canvas height="100" baseChart [chartType]="'bar'" [datasets]="dashboardBarChartData"
-          [labels]="dashboardBarChartlabels" [options]="dashboardBarChartOptions" [legend]="false"
-          [colors]="dashboardBarChartColors">
+        <canvas height="140" baseChart [chartType]="'doughnut'" [datasets]="humanResouceDoughnutChartData"
+          [labels]="humanResouceDoughnutChartLabels" [options]="humanResouceDoughnutChartOptions" [legend]="false"
+          [colors]="humanResouceDoughnutChartColors">
         </canvas>
         <div class="row dashboard-bar-chart-legend mt-5 mb-3">
           <div class="col">
             <h2>{{dashboardData.active}}</h2>
             <small class="text-muted">Active</small>
-            <div class="bg"></div>
+            <div class="bg" style="background-color: #62d896 !important;"></div>
           </div>
           <div class="col">
             <h2>{{dashboardData.inactive}}</h2>
