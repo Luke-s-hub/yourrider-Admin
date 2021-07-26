@@ -1,0 +1,75 @@
+form{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(230, 230, 230);
+    margin-bottom: 40px;
+
+    .filter{
+        background-color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .form{
+            width: 30%;
+            border-right: 1px solid rgb(230, 230, 230);
+
+            input, select{
+                width: 100%;
+                padding: 5px 10px;
+                color: rgb(150, 150, 150);
+                border: unset;
+                color: 0.8em;
+            
+                &::placeholder{
+                    color: rgb(150, 150, 150);
+                }
+            }
+        }
+    }
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .zmodal{
+        height: 90vh;
+        width: 95vw;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 15px;
+        overflow-y: scroll;
+    }
+
+    .body{
+        img{
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .item{
+            display: flex;
+            align-items: center;
+            padding: 5px 0;
+            margin: 5px 0;
+            border-bottom: 1px solid rgb(230, 230, 230);
+        }
+
+        label{
+            font-weight: bold;
+            width: 130px;
+        }
+    }
+}
