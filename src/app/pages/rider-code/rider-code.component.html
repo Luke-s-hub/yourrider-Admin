@@ -1,0 +1,88 @@
+<div *ngIf="!loading">
+    <div class="row">
+        <div class="col-12 grid-margin">
+          <div class="card card-statistics">
+            <div class="row">
+              <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                    <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                    <div class="wrapper text-center text-sm-left">
+                      <p class="card-text mb-0">All Codes</p>
+                      <div class="fluid-container">
+                        <h3 class="mb-0 font-weight-medium">{{codeData.all.length}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                    <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                    <div class="wrapper text-center text-sm-left">
+                      <p class="card-text mb-0">Active</p>
+                      <div class="fluid-container">
+                        <h3 class="mb-0 font-weight-medium">{{this.codeData.active}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                    <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                    <div class="wrapper text-center text-sm-left">
+                      <p class="card-text mb-0">Inactive</p>
+                      <div class="fluid-container">
+                        <h3 class="mb-0 font-weight-medium">{{codeData.inactive}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">All codes</h4>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Company</th>
+                      <th>Date Registered</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of codeData.all">
+                      <td>
+                        <div class="form-check form-check-flat">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input">
+                            {{item.code}}
+                            <i class="input-helper"></i>
+                          </label>
+                        </div>
+                      </td>
+                      <td>{{item.company.name}}</td>
+                      <td>{{item.created_at | date}}</td>
+                      <td>
+                          <button (click)="delete(item.id)" class="btn btn-danger">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

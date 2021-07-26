@@ -7,7 +7,7 @@
               <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
                 <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
                 <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">All Vendors</p>
+                  <p class="card-text mb-0">All Users</p>
                   <div class="fluid-container">
                     <h3 class="mb-0 font-weight-medium">{{creatorData.all.length}}</h3>
                   </div>
@@ -69,7 +69,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Campaigns</th>
+                  <th>Phone</th>
                   <th>Date Registered</th>
                   <th>Action</th>
                 </tr>
@@ -86,10 +86,11 @@
                     </div>
                   </td>
                   <td>{{item.email}}</td>
-                  <td>1</td>
+                  <td>{{item.phone}}</td>
                   <td>{{item.created_at | date}}</td>
                   <td>
-                      <button class="btn btn-danger">Deactivate</button>
+                      <button *ngIf="item.status" (click)="deactivate(item.id)" class="btn btn-danger">Deactivate</button>
+                      <button *ngIf="!item.status" (click)="activate(item.id)"  class="btn btn-success">Activate</button>
                   </td>
                 </tr>
               </tbody>

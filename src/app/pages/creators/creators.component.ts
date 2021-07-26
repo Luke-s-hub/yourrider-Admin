@@ -33,4 +33,30 @@ export class CreatorsComponent implements OnInit {
     })
   }
 
+  activate(id){
+    if(window.confirm('Are you sure you want to activate this user?')){
+      this.http.get(
+        this.helper.getApiUrl()+'dashboard/user/enable/'+id,
+        {headers: this.helper.header()}
+      ).subscribe((data: any) => {
+        this.getCreatorStats()
+        this.helper.showSuccess('', data.message)
+      })
+    }
+
+  }
+
+  deactivate(id){
+    if(window.confirm('Are you sure you want to deactivate this user?')){
+      this.http.get(
+        this.helper.getApiUrl()+'dashboard/user/disable/'+id,
+        {headers: this.helper.header()}
+      ).subscribe((data: any) => {
+        this.getCreatorStats()
+        this.helper.showSuccess('', data.message)
+      })
+    }
+
+  }
+
 }

@@ -8,13 +8,17 @@ import { Dashboard2Component } from './dashboard-2/dashboard-2.component';
 import { VendorsComponent } from './vendors/vendors.component';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CreatorsComponent } from './creators/creators.component';
+import { RiderCodeComponent } from './rider-code/rider-code.component';
+import { RiderCompanyComponent } from './rider-company/rider-company.component';
 
 @NgModule({
   declarations: [
     Dashboard2Component,
     VendorsComponent,
     CampaignsComponent,
-    CreatorsComponent
+    CreatorsComponent,
+    RiderCodeComponent,
+    RiderCompanyComponent
   ],
   imports: [
     CommonModule,

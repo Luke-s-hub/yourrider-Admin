@@ -1,0 +1,81 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HelperService } from 'src/app/services/helper/helper.service';
+
+@Component({
+  selector: 'app-rider-code',
+  templateUrl: './rider-code.component.html',
+  styleUrls: ['./rider-code.component.scss']
+})
+export class RiderCodeComponent implements OnInit {
+
+  loading:boolean = true
+
+  codeData: any
+  company: any
+
+  codeForm = this.fb.group({
+    company: ['', [Validators.required]],
+    code: ['', [Validators.required]],
+  })
+
+  constructor(
+    private fb: FormBuilder,
+    private helper: HelperService,
+    private http: HttpClient,
+    private router: Router
+  ) { 
+    this.getCodeStats()
+    this.getCompany()
+  }
+
+  ngOnInit(): void {
+  }
+
+  getCompany(){
+    this.http.get(
+      this.helper.getApiUrl()+'dashboard/get_companies',
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.company = data.data
+      console.log('data gotten', data.data)
+    })
+  }
+
+  getCodeStats(){
+    this.http.get(
+      this.helper.getApiUrl()+'dashboard/get_rider_codes',
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.codeData = data.data
+      this.loading = false
+      console.log('data gotten', data.data)
+    })
+  }
+
+  delete(id){
+    if(window.confirm('Are you sure you want to delete this code?')){
+      this.http.get(
+        this.helper.getApiUrl()+'dashboard/delete_code/'+id,
+        {headers: this.helper.header()}
+      ).subscribe((data: any) => {
+        this.getCodeStats()
+        this.helper.showSuccess('', data.message)
+      })
+    }
+
+  }
+
+  createCode(){
+    this.http.post(
+      this.helper.getApiUrl()+'dashboard/create_code',
+      this.codeForm.value,
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.helper.showSuccess('', data.message)
+    })
+  }
+
+}
