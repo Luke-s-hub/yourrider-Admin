@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class RiderCompanyComponent implements OnInit {
     private fb: FormBuilder,
     private helper: HelperService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) { 
     this.getCompanies()
   }
@@ -66,6 +68,19 @@ export class RiderCompanyComponent implements OnInit {
       this.getCompanies()
       this.submit = false
     })
+  }
+
+  exportData(){
+    let data = []
+    this.companies.forEach(element => {
+      let temp = {
+        'Company Name' : element.name,
+        'Date Registered' : this.helper.formatDate(element.created_at)
+      }
+      data.push(temp)
+    });
+
+    this.excelService.exportAsExcelFile(data, 'Company Data');
   }
 
 }

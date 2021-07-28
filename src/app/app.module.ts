@@ -45,6 +45,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ExcelService } from "./services/excel.service";
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [
+  providers: [ExcelService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpHandlerService,

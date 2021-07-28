@@ -10,6 +10,8 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CreatorsComponent } from './creators/creators.component';
 import { RiderCodeComponent } from './rider-code/rider-code.component';
 import { RiderCompanyComponent } from './rider-company/rider-company.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RiderCompanyComponent } from './rider-company/rider-company.component';
     CampaignsComponent,
     CreatorsComponent,
     RiderCodeComponent,
-    RiderCompanyComponent
+    RiderCompanyComponent,
+    OrdersComponent,
+    ViewOrderComponent
   ],
   imports: [
     CommonModule,

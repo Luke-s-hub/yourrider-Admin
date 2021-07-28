@@ -1,11 +1,12 @@
-<div class="row">
+<div *ngIf="!loading">
+  <div class="row">
     <div class="col-12 grid-margin">
       <div class="card card-statistics">
         <div class="row">
           <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <i class="mdi mdi-home-modern text-primary mr-0 mr-sm-4 icon-lg"></i>
                 <div class="wrapper text-center text-sm-left">
                   <p class="card-text mb-0">All Companies</p>
                   <div class="fluid-container">
@@ -37,6 +38,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Latest Companies</h4>
+          <button [disabled]="companyData.length < 1" (click)="exportData()" class="mt-3 mb-3 btn btn-primary">Export Data <i class="mdi mdi-file-excel-box"></i></button>
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>
@@ -56,13 +58,7 @@
               <tbody>
                 <tr *ngFor="let item of companyData">
                   <td>
-                    <div class="form-check form-check-flat">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        {{item.company_name}}
-                        <i class="input-helper"></i>
-                      </label>
-                    </div>
+                    {{item.company_name}}
                   </td>
                   <td>{{item.company_email}}</td>
                   <td>{{item.company_phone}}</td>
@@ -81,3 +77,5 @@
       </div>
     </div>
   </div>
+
+</div>

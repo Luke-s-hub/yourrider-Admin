@@ -1,3 +1,7 @@
+.sentence{
+    text-transform:capitalize;
+}
+
 form{
     width: 100%;
     padding: 10px;
@@ -12,7 +16,7 @@ form{
         flex-wrap: wrap;
 
         .form{
-            width: 30%;
+            width: 22%;
             border-right: 1px solid rgb(230, 230, 230);
 
             input, select{
@@ -51,14 +55,6 @@ form{
         overflow-y: scroll;
     }
 
-    .tokenmodal{
-        height: 300px;
-        width: 300px;
-        background-color: #fff;
-        border-radius: 5px;
-        padding: 15px;
-    }
-
     .body{
         img{
             width: 150px;
@@ -78,23 +74,6 @@ form{
         label{
             font-weight: bold;
             width: 130px;
-        }
-    }
-}
-
-.form-area{
-    background-color: #fff;
-    input{
-        border: unset;
-        border: 1px solid rgb(100, 100, 100);
-        padding: 7px 20px;
-        width: 100%;
-        border-radius: 5px;
-        color: rgb(100, 100, 100);
-        font-size: 0.8em;
-
-        &::placeholder{
-            color: rgb(100, 100, 100);
         }
     }
 }

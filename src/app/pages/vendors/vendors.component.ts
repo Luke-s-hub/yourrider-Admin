@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
 
 @Component({
@@ -11,23 +12,39 @@ import { HelperService } from 'src/app/services/helper/helper.service';
 })
 export class VendorsComponent implements OnInit {
 
+  loading: boolean = true
   showModal: boolean = false
+  showCreditModal: boolean = false
+  showDebitModal: boolean = false
   details: any
   riderData: any
   views: any = []
   timeout: any
   companies: any = []
+
+  submitCredit: boolean = false
+  submitDebit: boolean = false
+
   filterForm = this.fb.group({
     quick: [''],
     date: [''],
     company: [null],
   })
 
+  creditForm = this.fb.group({
+    amount: [''],
+  })
+
+  debitForm = this.fb.group({
+    amount: [''],
+  })
+
   constructor(
     private fb: FormBuilder,
     public helper: HelperService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) { 
     this.getRiderStats()
     this.getCompany()
@@ -53,8 +70,10 @@ export class VendorsComponent implements OnInit {
       this.helper.getApiUrl()+'dashboard/rider',
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
+      console.log(data)
       this.riderData = data.data
       this.views = data.data.all
+      this.loading = false;
     })
   }
 
@@ -137,4 +156,82 @@ export class VendorsComponent implements OnInit {
     console.log(data)
   }
 
+  getTokenBalance(data){
+    let credit = 0
+    let debit = 0
+    if(data || data.length > 0){
+      data.forEach(element => {
+        credit += element.credit
+        debit += element.debit
+      });
+      return (credit - debit).toLocaleString()
+    }
+    else{
+      return 0
+    }
+  }
+
+  credit(){
+    this.showModal = false
+    this.showCreditModal = true
+  }
+
+  debit(){
+    this.showModal = false
+    this.showDebitModal = true
+  }
+
+  processCredit(){
+    if(!this.creditForm.value.amount || this.creditForm.value.amount < 1){
+      return this.helper.showWarning('', 'Invalid amount')
+    }
+    let user = this.details.user.id
+    let amount = this.creditForm.value.amount
+    this.submitCredit = true
+    this.http.get(
+      this.helper.getApiUrl()+'payment/credit_token/'+user+'/'+amount,
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.submitCredit = false;
+      this.helper.showSuccess(this.details.user.name, data.message)
+      this.getRiderStats()
+      this.showCreditModal = false
+    })
+  }
+
+  processDebit(){
+    if(!this.debitForm.value.amount || this.debitForm.value.amount < 1){
+      return this.helper.showWarning('', 'Invalid amount')
+    }
+    let user = this.details.user.id
+    let amount = this.debitForm.value.amount
+    this.submitDebit = true
+    this.http.get(
+      this.helper.getApiUrl()+'payment/debit_token/'+user+'/'+amount,
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.submitDebit = false;
+      this.helper.showSuccess(this.details.user.name, data.message)
+      this.getRiderStats()
+      this.showDebitModal = false
+    })
+  }
+
+  exportData(){
+    let data = []
+    this.views.forEach(element => {
+      let temp = {
+        'Name' : element.user.name,
+        'Email' : element.user.email,
+        'Phone' : element.user.phone,
+        'Company' : element.company.name,
+        'Company ID' : element.code.code,
+        'Pending Payout' : this.getTokenBalance(element.user.token),
+        'Date Registered' : this.helper.formatDate(element.user.created_at)
+      }
+      data.push(temp)
+    });
+
+    this.excelService.exportAsExcelFile(data, 'Rider Data');
+  }
 }

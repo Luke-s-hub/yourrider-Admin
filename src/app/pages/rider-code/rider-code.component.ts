@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class RiderCodeComponent implements OnInit {
     private fb: FormBuilder,
     private helper: HelperService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) { 
     this.getCodeStats()
     this.getCompany()
@@ -61,6 +63,7 @@ export class RiderCodeComponent implements OnInit {
         this.helper.getApiUrl()+'dashboard/delete_code/'+id,
         {headers: this.helper.header()}
       ).subscribe((data: any) => {
+        console.log(data)
         this.getCodeStats()
         this.helper.showSuccess('', data.message)
       })
@@ -79,6 +82,21 @@ export class RiderCodeComponent implements OnInit {
       this.getCodeStats()
       this.submit = false
     })
+  }
+
+  exportData(){
+    let data = []
+    this.codeData.all.forEach(element => {
+      let temp = {
+        'Code' : element.code,
+        'Company' : element.company.name,
+        'Status' : element.status? 'Active' : 'Inactive',
+        'Date Registered' : this.helper.formatDate(element.created_at)
+      }
+      data.push(temp)
+    });
+
+    this.excelService.exportAsExcelFile(data, 'Rider Identification Codes');
   }
 
 }

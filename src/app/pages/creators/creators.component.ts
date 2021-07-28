@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class CreatorsComponent implements OnInit {
   constructor(
     private helper: HelperService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService
   ) { 
     this.getCreatorStats()
   }
@@ -57,6 +59,21 @@ export class CreatorsComponent implements OnInit {
       })
     }
 
+  }
+
+  exportData(){
+    let data = []
+    this.creatorData.all.forEach(element => {
+      let temp = {
+        'Name' : element.user.name,
+        'Email' : element.user.email,
+        'Phone' : element.user.phone,
+        'Date Registered' : this.helper.formatDate(element.user.created_at)
+      }
+      data.push(temp)
+    });
+
+    this.excelService.exportAsExcelFile(data, 'User Data');
   }
 
 }
