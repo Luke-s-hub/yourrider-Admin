@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExcelService } from 'src/app/services/excel.service';
-import { HelperService } from 'src/app/services/helper/helper.service';
+import { HelperService } from 'src/app/services/helper/helper.service'; 
 
 @Component({
-  selector: 'app-campaigns',
-  templateUrl: './campaigns.component.html',
-  styleUrls: ['./campaigns.component.scss']
+  selector: 'app-approved-companies',
+  templateUrl: './approved-companies.component.html',
+  styleUrls: ['./approved-companies.component.scss']
 })
-export class CampaignsComponent implements OnInit {
+export class ApprovedCompaniesComponent implements OnInit {
 
   loading:boolean = true
   companyData: any;
@@ -27,7 +27,7 @@ export class CampaignsComponent implements OnInit {
 
   getCompanyData(){
     this.http.get(
-      this.helper.getApiUrl()+'company',
+      this.helper.getApiUrl()+'company/approved',
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.companyData = data.data
@@ -39,7 +39,7 @@ export class CampaignsComponent implements OnInit {
   delete(id){
     if(window.confirm('Are you sure you want to delete this company?')){
       this.http.delete(
-        this.helper.getApiUrl()+'company/delete/'+id,
+        this.helper.getApiUrl()+'company/delete_approved/'+id,
         {headers: this.helper.header()}
       ).subscribe((data: any) => {
         this.getCompanyData()
@@ -91,16 +91,5 @@ export class CampaignsComponent implements OnInit {
     }
   }
 
-  approve(id){
-    if(window.confirm('Are you sure you want to approve this company?')){
-      this.http.get(
-        this.helper.getApiUrl()+'company/approve/'+id,
-        {headers: this.helper.header()}
-      ).subscribe((data: any) => {
-        this.getCompanyData()
-        this.helper.showSuccess('', data.message)
-      })
-    }
-  }
 
 }

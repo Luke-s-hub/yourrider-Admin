@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ApprovedCompaniesComponent } from './approved-companies/approved-companies.component';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CreatorsComponent } from './creators/creators.component';
 import { Dashboard2Component } from './dashboard-2/dashboard-2.component';
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'companies',
-    component: RiderCompanyComponent,
+    component: ApprovedCompaniesComponent,
   },
   {
     path: 'codes',
