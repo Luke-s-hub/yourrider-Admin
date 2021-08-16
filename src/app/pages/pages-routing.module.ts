@@ -8,6 +8,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { RiderCodeComponent } from './rider-code/rider-code.component';
 import { RiderCompanyComponent } from './rider-company/rider-company.component';
 import { VendorsComponent } from './vendors/vendors.component';
+import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
 
 
 
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent,
+  },
+  {
+    path: 'withdrawal-requests',
+    component: WithdrawalRequestsComponent,
   },
 ];
 

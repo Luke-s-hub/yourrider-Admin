@@ -86,6 +86,13 @@
                 </select>
               </div>
               <div class="form">
+                <select formControlName="company">
+                  <option [value]="null">Select Company</option>
+                  <option [value]="''">All</option>
+                  <option *ngFor="let item of company" [value]="item.name">{{item.name}}</option>
+                </select>
+              </div>
+              <div class="form">
                 <select formControlName="status">
                   <option [value]="null">Select Delivery Type</option>
                   <option [value]="''">All</option>
@@ -108,6 +115,8 @@
                   <th>Amount (NGN)</th>
                   <th>Delivery Type</th>
                   <th>Payment Type</th>
+                  <th>Rider</th>
+                  <th>Company</th>
                   <th>Status</th>
                   <th>Date requested</th>
                 </tr>
@@ -121,6 +130,8 @@
                   <td>{{item.amount}}</td>
                   <td class="sentence">{{item.deliveryType}}</td>
                   <td class="sentence">{{item.paymentType}}</td>
+                  <td>{{item.rider}}</td>
+                  <td>{{item.company}}</td>
                   <td class="sentence">{{item.status}}</td>
                   <td>{{item.date | date}}</td>
                   <td>

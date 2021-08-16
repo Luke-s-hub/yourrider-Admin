@@ -33,6 +33,8 @@
                     <th>Company Name</th>
                     <th>Company Email</th>
                     <th>Company Phone</th>
+                    <th>Company Locations</th>
+                    <th>No. of riders</th>
                     <th>Manager Name</th>
                     <th>Manager Email</th>
                     <th>Manager Phone</th>
@@ -49,6 +51,8 @@
                     </td>
                     <td>{{item.company_email}}</td>
                     <td>{{item.company_phone}}</td>
+                    <td>{{getOperationLocation(item.operation_location)}}</td>
+                    <td>{{item.riders_count}}</td>
                     <td>{{item.manager_name}}</td>
                     <td>{{item.manager_email}}</td>
                     <td>{{item.manager_phone}}</td>

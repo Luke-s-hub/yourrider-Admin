@@ -23,9 +23,12 @@ export class OrdersComponent implements OnInit {
   pending: number;
   accepted_picked:number;
   completed_confirmed:number;
+  riderData: any = []
+  company: any = []
 
   filterForm = this.fb.group({
     date: [''],
+    company: [null],
     payment_type: [null],
     delivery_type: [null],
     status: [null],
@@ -44,7 +47,29 @@ export class OrdersComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.getOrders()
+    this.getCompany()
+    this.getRiders();
+  }
+
+  getCompany(){
+    this.http.get(
+      this.helper.getApiUrl()+'dashboard/get_companies',
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.company = data.data
+      console.log('data gotten', data.data)
+    })
+  }
+
+  getRiders(){
+    this.http.get(
+      this.helper.getApiUrl()+'dashboard/rider',
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      console.log(data)
+      this.riderData = data.data.all
+      this.getOrders()
+    })
   }
 
   getOrders(){
@@ -64,7 +89,8 @@ export class OrdersComponent implements OnInit {
         if(order.status == 'confirmed' || order.status == 'completed'){
           completed_confirmed++
         }
-        orders.push(order)
+        let rider = this.getRider(order.rider)
+        orders.push({...order, ...rider})
       });
       this.orders = orders
       this.views = orders
@@ -75,6 +101,16 @@ export class OrdersComponent implements OnInit {
 
       this.loading = false
     })
+  }
+
+  getRider(id){
+    let rider = {rider: 'Not Available', company: 'Not Available'}
+    this.riderData.forEach(element => {
+      if(element.user.id == id){
+        rider = {rider: element.user.name, company: element.company.name}
+      }
+    });
+    return  rider
   }
 
   filterData(){
@@ -114,6 +150,17 @@ export class OrdersComponent implements OnInit {
       }
       else{
         console.log('no deliveryType')
+      }
+
+      if(this.filterForm.value.company){
+        result = result.filter((value) => {
+          if(value.company == this.filterForm.value.company){
+            return value
+          }
+        })
+      }
+      else{
+        console.log('no company')
       }
 
       if(this.filterForm.value.status){
@@ -167,6 +214,8 @@ export class OrdersComponent implements OnInit {
         'Amount (NGN)' : element.amount,
         'Delivery Type' : element.deliveryType,
         'Payment Type' : element.paymentType,
+        'Rider' : element.rider,
+        'Company' : element.company,
         'status' : element.status,
         'Date Registered' : this.helper.formatDate(element.date)
       }

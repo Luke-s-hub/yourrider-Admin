@@ -13,6 +13,7 @@ import { RiderCompanyComponent } from './rider-company/rider-company.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { ApprovedCompaniesComponent } from './approved-companies/approved-companies.component';
+import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ApprovedCompaniesComponent } from './approved-companies/approved-compan
     RiderCompanyComponent,
     OrdersComponent,
     ViewOrderComponent,
-    ApprovedCompaniesComponent
+    ApprovedCompaniesComponent,
+    WithdrawalRequestsComponent
   ],
   imports: [
     CommonModule,
