@@ -73,7 +73,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders(){
-    this.afs.collection('orders').get().subscribe((result:any) => {
+    this.afs.collection('orders', ref => ref.orderBy('date', 'desc')).get().subscribe((result:any) => {
       let orders = []
       let pending = 0
       let accepted_picked = 0
