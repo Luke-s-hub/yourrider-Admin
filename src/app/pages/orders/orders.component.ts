@@ -160,7 +160,7 @@ export class OrdersComponent implements OnInit {
         })
       }
       else{
-        console.log('no company')
+        console.log('no company set')
       }
 
       if(this.filterForm.value.status){
