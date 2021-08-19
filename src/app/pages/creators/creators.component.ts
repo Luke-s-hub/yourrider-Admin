@@ -68,7 +68,7 @@ export class CreatorsComponent implements OnInit {
         'Name' : element.name,
         'Email' : element.email,
         'Phone' : element.phone,
-        'Date Registered' : this.helper.formatDate(element.user.created_at)
+        'Date Registered' : this.helper.formatDate(element.created_at)
       }
       data.push(temp)
     });
