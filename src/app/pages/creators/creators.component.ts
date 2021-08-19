@@ -65,9 +65,9 @@ export class CreatorsComponent implements OnInit {
     let data = []
     this.creatorData.all.forEach(element => {
       let temp = {
-        'Name' : element.user.name,
-        'Email' : element.user.email,
-        'Phone' : element.user.phone,
+        'Name' : element.name,
+        'Email' : element.email,
+        'Phone' : element.phone,
         'Date Registered' : this.helper.formatDate(element.user.created_at)
       }
       data.push(temp)
