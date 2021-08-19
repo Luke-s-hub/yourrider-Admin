@@ -54,7 +54,7 @@ export class Dashboard2Component implements OnInit {
           data: [this.dashboardData.active, this.dashboardData.unverified, this.dashboardData.inactive]
         }
       ];
-      //console.log(data.data)
+      console.log(data.data)
     })
   }
 
