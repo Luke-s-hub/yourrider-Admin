@@ -1,0 +1,65 @@
+.close{
+    cursor: pointer;
+  }
+  .head{
+    color: rgb(40, 40, 40);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+  
+    mdb-icon{
+      color: #0065a3;
+    }
+  }
+  button.yes{
+    color: white;
+    background-color:  #0065a3;
+  
+    &:hover{
+        opacity: .5;
+    }
+  }
+  .title{
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  
+  .description{
+    font-size: 0.8em;
+    color: rgb(100, 100, 100);
+  }
+  
+  button.no{
+    color: rgb(100, 100, 100);
+    background-color: rgb(230, 230, 230);
+  
+    &:hover{
+        opacity: .5
+    }
+  }
+  
+  .close-btn{
+    color: #CA9132;
+    font-size: 1.5em;
+    border: unset;
+    background-color: unset;
+  }
+  
+  i{
+      cursor: pointer;
+  }
+
+  textarea, input{
+      width: 100%;
+      border: unset;
+      background-color: rgb(230, 230, 230);
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 0.8em;
+      margin-bottom: 15px;
+  }
+
+  textarea{
+      height: 200px;
+  }

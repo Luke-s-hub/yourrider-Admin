@@ -2,7 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
+import { BroadcastComponent } from "src/app/components/broadcast/broadcast.component";
 import { HelperService } from "src/app/services/helper/helper.service";
+import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class Dashboard2Component implements OnInit {
     private helper: HelperService,
     private http: HttpClient,
     private router: Router,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private matDialog: MatDialog,
   ) {
     this.getDashboardStats()
     this.afs.collection('orders', ref => ref.limit(10).orderBy('date', 'desc')).valueChanges().subscribe((data) => {
@@ -29,6 +32,15 @@ export class Dashboard2Component implements OnInit {
   }
 
   ngOnInit() {}
+
+  broadcast(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '400px'
+    let dialogRef = this.matDialog.open(BroadcastComponent, dialogConfig);
+    return dialogRef
+
+  }
 
   getDashboardStats(){
     this.http.get(

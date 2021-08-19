@@ -12,6 +12,7 @@ import { NgxGaugeModule } from 'ngx-gauge';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartjsComponent } from './charts/chartjs/chartjs.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { ChartjsComponent } from './charts/chartjs/chartjs.component';
         MaterialModule,
         ChartsModule,
         NgxGaugeModule,
+        ReactiveFormsModule,
         NgbModule,
         NgCircleProgressModule.forRoot({
           radius: 60,
@@ -39,6 +41,7 @@ import { ChartjsComponent } from './charts/chartjs/chartjs.component';
         ConfirmComponent,
         ChartsModule,
         ChartjsComponent,
+        ReactiveFormsModule,
         NgbModule,
         NgxGaugeModule,
         NgCircleProgressModule

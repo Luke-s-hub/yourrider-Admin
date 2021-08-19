@@ -46,6 +46,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ExcelService } from "./services/excel.service";
+import { BroadcastComponent } from './components/broadcast/broadcast.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ExcelService } from "./services/excel.service";
     Page404Component,
     Page500Component,
     PageLayoutComponent,
+    BroadcastComponent,
   ],
   imports: [
     SharedModule,

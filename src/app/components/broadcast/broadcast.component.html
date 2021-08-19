@@ -1,0 +1,23 @@
+<div mat-dialog-title class="head">
+    <p>Send a broadcast message</p>
+    <p><i (click)="close()" class="mdi mdi-window-close text-primary mr-0 mr-sm-4 icon-md"></i></p>
+  </div>
+  
+  <mat-dialog-content>
+  
+    <form [formGroup]="messageForm">
+        <input type="text" formControlName="title" placeholder="Title">
+        <textarea formControlName="body" placeholder="Message..."></textarea>
+    </form>
+  
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button class="yes" (click)="send()" mat-button [disabled]="!messageForm.valid" cdkFocusInitial>
+        <span *ngIf="!submit">Send</span>
+        <div *ngIf="submit" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </button>
+  </mat-dialog-actions>
+  
