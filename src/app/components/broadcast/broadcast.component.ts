@@ -43,8 +43,10 @@ export class BroadcastComponent implements OnInit {
       this.messageForm.value,
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
+      this.helper.showSuccess('', data.message)
       this.submit = false
       console.log(data.data)
+      this.close()
     }, error => {
       this.submit = false
       console.log (error)
