@@ -187,7 +187,7 @@ export class OrdersComponent implements OnInit {
     this.getUser(data.uid, 'user')
     let rider_id = data.rider? data.rider : null
     if(rider_id && rider_id != 'Not Available'){
-      this.getUser(rider_id, 'rider')
+      this.getUser(data.rider, 'rider')
     }
   }
 
