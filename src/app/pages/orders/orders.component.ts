@@ -175,7 +175,7 @@ export class OrdersComponent implements OnInit {
       }
 
       this.views = result
-    }, 1000)
+    }, 1001)
   }
 
   view(data){
