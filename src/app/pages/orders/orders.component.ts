@@ -66,7 +66,6 @@ export class OrdersComponent implements OnInit {
       this.helper.getApiUrl()+'dashboard/rider',
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
-      console.log(data)
       this.riderData = data.data.all
       this.getOrders()
     })
