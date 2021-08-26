@@ -104,10 +104,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getRider(id){
-    let rider = {rider: 'Not Available', company: 'Not Available'}
+    let rider = {rider_name: 'Not Available', company: 'Not Available'}
     this.riderData.forEach(element => {
       if(element.user.id == id){
-        rider = {rider: element.user.name, company: element.company.name}
+        rider = {rider_name: element.user.name, company: element.company.name}
       }
     });
     return  rider
@@ -214,7 +214,7 @@ export class OrdersComponent implements OnInit {
         'Amount (NGN)' : element.amount,
         'Delivery Type' : element.deliveryType,
         'Payment Type' : element.paymentType,
-        'Rider' : element.rider,
+        'Rider' : element.rider_name,
         'Company' : element.company,
         'status' : element.status,
         'Date Registered' : this.helper.formatDate(element.date)
