@@ -37,7 +37,7 @@
     "ng-circle-progress": "^1.5.1",
     "ng2-charts": "^2.3.0",
     "ngx-gauge": "^1.1.0",
-    "ngx-toastr": "10.0.4",
+    "ngx-toastr": "12.0.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "typicons.font": "^2.0.9",
