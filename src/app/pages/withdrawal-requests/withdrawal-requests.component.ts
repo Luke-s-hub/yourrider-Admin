@@ -20,6 +20,7 @@ export class WithdrawalRequestsComponent implements OnInit {
   pending: number;
   approved:number;
   declined:number;
+  approving: boolean = false
 
   filterForm = this.fb.group({
     date: [''],
@@ -111,24 +112,32 @@ export class WithdrawalRequestsComponent implements OnInit {
 
   approve(id){
     if(window.confirm('Are you sure you want to approve this request?')){
+      this.approving = true
       this.http.get(
         this.helper.getApiUrl()+'dashboard/approve_withdrawal_request/'+id,
         {headers: this.helper.header()}
       ).subscribe((data: any) => {
+        this.approving = false
         this.getRequests()
         this.helper.showSuccess('', data.message)
+      }, error => {
+        this.approving = false
       })
     }
   }
 
   decline(id){
     if(window.confirm('Are you sure you want to decline this request?')){
+      this.approving = true
       this.http.get(
         this.helper.getApiUrl()+'dashboard/decline_withdrawal_request/'+id,
         {headers: this.helper.header()}
       ).subscribe((data: any) => {
+        this.approving = false
         this.getRequests()
         this.helper.showSuccess('', data.message)
+      }, error => {
+        this.approving = false
       })
     }
   }

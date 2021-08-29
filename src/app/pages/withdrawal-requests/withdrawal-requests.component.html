@@ -127,3 +127,11 @@
 <ng-template class="mt-3" #stillLoading>
     please wait...
 </ng-template>
+
+<div class="loading" *ngIf="approving">
+  <div class="overlay">
+    <div class="spinner-border text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
