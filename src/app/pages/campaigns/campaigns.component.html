@@ -36,6 +36,7 @@
                   <th>Manager Name</th>
                   <th>Manager Email</th>
                   <th>Manager Phone</th>
+                  <th>Opted Insurance</th>
                   <th>Manager Photo</th>
                   <th>CAC Certificate</th>
                   <th>Date</th>
@@ -52,6 +53,7 @@
                   <td>{{item.manager_name}}</td>
                   <td>{{item.manager_email}}</td>
                   <td>{{item.manager_phone}}</td>
+                  <td>{{item.insurance? 'Yes':'No'}}</td>
                   <td><a target="_blank" [href]="helper.getApiImageLink()+item.manager_photo">View</a></td>
                   <td><a target="_blank" [href]="helper.getApiImageLink()+item.cac_certificate">View</a></td>
                   <td>{{item.created_at | date}}</td>
