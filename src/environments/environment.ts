@@ -9,7 +9,7 @@ export const environment = {
   	//url: 'http://192.168.43.203:80/api/',
   	//url: 'https://api.yourrider.com/api/',
   	url: 'http://yourriderapi.test/api/',
-    imageUrl: 'http://yourriderapi.test/',
+    imageUrl: 'http://yourriderapi.test/images',
     // url: 'https://api.yourrider.com/api/',
     // imageUrl: 'https://api.yourrider.com/images/',
   },
