@@ -5,7 +5,7 @@ export const environment = {
     url: 'https://api.yourrider.com/api/',
     //url: 'http://192.168.43.203:80/api/',
     //url: 'http://10.0.2.2:8000/api/',
-    imageUrl: 'https://api.yourrider.com/images/',
+    imageUrl: 'https://api.yourrider.com/',
   },
   firebase: {
     apiKey: "AIzaSyDZV-bq-pWtpIOVcEuIHKZYOaNOU_NWDSA",
