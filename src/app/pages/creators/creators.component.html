@@ -84,6 +84,7 @@
                   <td>{{item.phone}}</td>
                   <td>{{item.created_at | date}}</td>
                   <td>
+                      <button (click)="updatePhone(item.id, item.phone)" class="btn btn-primary mr-2">Update phone</button>
                       <button *ngIf="item.status" (click)="deactivate(item.id)" class="btn btn-danger">Deactivate</button>
                       <button *ngIf="!item.status" (click)="activate(item.id)"  class="btn btn-success">Activate</button>
                   </td>
@@ -91,6 +92,27 @@
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="showPhoneModal" class="overlay">
+    <div class="tokenmodal">
+      <div class="mb-5 close">
+        <i (click)="showPhoneModal = false" class="mdi cursor-pointer mdi-close-box text-right"></i>
+      </div>
+      <div class="body">
+        <h4>Update phone</h4>
+        <div class="form-area mt-3">
+          <form [formGroup]="phoneForm" (ngSubmit)="processPhone()">
+            <input type="text" formControlName="phone" placeholder="Enter phone number">
+            <button type="submit" class="btn btn-primary btn-sm mt-3">
+              <span *ngIf="!submitPhone">Update</span>
+              <span *ngIf="submitPhone">Please wait...</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>

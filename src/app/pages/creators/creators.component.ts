@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
@@ -12,10 +13,17 @@ import { HelperService } from 'src/app/services/helper/helper.service';
 export class CreatorsComponent implements OnInit {
 
   creatorData: any
+  showPhoneModal: boolean = false;
+  submitPhone: boolean = false;
+  phoneForm = this.fb.group({
+    phone: [''],
+    id: [''],
+  })
 
   constructor(
     private helper: HelperService,
     private http: HttpClient,
+    private fb: FormBuilder,
     private router: Router,
     private excelService: ExcelService
   ) { 
@@ -76,4 +84,22 @@ export class CreatorsComponent implements OnInit {
     this.excelService.exportAsExcelFile(data, 'User Data');
   }
 
+  updatePhone(id, phone){
+    this.phoneForm.get('phone').patchValue(phone)
+    this.phoneForm.get('id').patchValue(id)
+    this.showPhoneModal = true
+  }
+
+  processPhone(){
+    this.submitPhone = true
+    this.http.post(
+      this.helper.getApiUrl()+'dashboard/user/update/phone/'+this.phoneForm.value.id,
+      {phone: this.phoneForm.value.phone},
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.submitPhone = false;
+      this.helper.showSuccess('Success', data.message)
+      this.getCreatorStats()
+    })
+  }
 }

@@ -25,6 +25,13 @@ export class VendorsComponent implements OnInit {
   submitCredit: boolean = false
   submitDebit: boolean = false
 
+  showPhoneModal: boolean = false;
+  submitPhone: boolean = false;
+  phoneForm = this.fb.group({
+    phone: [''],
+    id: [''],
+  })
+
   filterForm = this.fb.group({
     quick: [''],
     date: [''],
@@ -233,5 +240,24 @@ export class VendorsComponent implements OnInit {
     });
 
     this.excelService.exportAsExcelFile(data, 'Rider Data');
+  }
+
+  updatePhone(id, phone){
+    this.phoneForm.get('phone').patchValue(phone)
+    this.phoneForm.get('id').patchValue(id)
+    this.showPhoneModal = true
+  }
+
+  processPhone(){
+    this.submitPhone = true
+    this.http.post(
+      this.helper.getApiUrl()+'dashboard/user/update/phone/'+this.phoneForm.value.id,
+      {phone: this.phoneForm.value.phone},
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.submitPhone = false;
+      this.helper.showSuccess('Success', data.message)
+      this.getRiderStats()
+    })
   }
 }
