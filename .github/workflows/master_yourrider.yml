@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'yourrider'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E74AF8DC41AE45B5BE1FD79CCCAD7A2C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3DF1994845974EC8A49F9F3F409D6224 }}
           package: .
