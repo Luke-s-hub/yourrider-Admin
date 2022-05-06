@@ -16,8 +16,9 @@ export class LoginComponent implements OnInit {
   submit:boolean = false;
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    id: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
+    role: [1, [Validators.required]],
   })
 
   constructor(

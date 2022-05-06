@@ -16,13 +16,13 @@ export class OrdersComponent implements OnInit {
   details: any
   views: any = []
   timeout: any
-  customer : any
-  rider : any
   orders: any = []
   loading: boolean = true
   pending: number;
-  accepted_picked:number;
-  completed_confirmed:number;
+  count: number;
+  accepted:number;
+  picked:number;
+  delivered:number;
   riderData: any = []
   company: any = []
 
@@ -48,7 +48,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompany()
-    this.getRiders();
+    this.getOrders()
   }
 
   getCompany(){
@@ -57,60 +57,24 @@ export class OrdersComponent implements OnInit {
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.company = data.data
-      console.log('data gotten', data.data)
-    })
-  }
-
-  getRiders(){
-    this.http.get(
-      this.helper.getApiUrl()+'dashboard/rider',
-      {headers: this.helper.header()}
-    ).subscribe((data: any) => {
-      console.log(data)
-      this.riderData = data.data.all
-      this.getOrders()
     })
   }
 
   getOrders(){
-    this.afs.collection('orders', ref => ref.orderBy('date', 'desc')).get().subscribe((result:any) => {
-      let orders = []
-      let pending = 0
-      let accepted_picked = 0
-      let completed_confirmed = 0
-      result.forEach(element => {
-        let order = element.data()
-        if(order.status == 'pending'){
-          pending++
-        }
-        if(order.status == 'accepted' || order.status == 'picked'){
-          accepted_picked++
-        }
-        if(order.status == 'confirmed' || order.status == 'completed'){
-          completed_confirmed++
-        }
-        let rider = this.getRider(order.rider)
-        orders.push({...order, ...rider})
-      });
-      this.orders = orders
-      this.views = orders
-      console.log(this.views)
-      this.accepted_picked = accepted_picked
-      this.completed_confirmed = completed_confirmed
-      this.pending = pending
-
+    this.http.get(
+      this.helper.getApiUrl()+'order',
+      {headers: this.helper.header()}
+    ).subscribe((data: any) => {
+      this.orders = data.data.all.data
+      this.views = data.data.all.data
+      this.accepted = data.data.accepted
+      this.picked = data.data.picked
+      this.delivered = data.data.delivered
+      this.pending = data.data.pending
+      this.count = data.data.count
+      console.log('data gotten', data.data)
       this.loading = false
     })
-  }
-
-  getRider(id){
-    let rider = {rider_name: 'Not Available', company: 'Not Available'}
-    this.riderData.forEach(element => {
-      if(element.user.id == id){
-        rider = {rider_name: element.user.name, company: element.company.name}
-      }
-    });
-    return  rider
   }
 
   filterData(){
@@ -119,7 +83,6 @@ export class OrdersComponent implements OnInit {
       let result = this.orders
       if(this.filterForm.value.date){
         result = result.filter((value) => {
-
         console.log(new Date(value.date), new Date (this.filterForm.value.date))
           if(this.helper.formatDate(value.date) == this.helper.formatDate(this.filterForm.value.date)){
             return value
@@ -129,7 +92,6 @@ export class OrdersComponent implements OnInit {
       else{
         console.log('no date')
       }
-
       if(this.filterForm.value.payment_type){
         result = result.filter((value) => {
           if(value.paymentType == this.filterForm.value.payment_type){
@@ -180,29 +142,8 @@ export class OrdersComponent implements OnInit {
 
   view(data){
     console.log(data)
-    this.customer = null
-    this.rider = null
     this.showModal = true
     this.details = data
-    this.getUser(data.uid, 'user')
-    let rider_id = data.rider? data.rider : null
-    if(rider_id && rider_id != 'Not Available'){
-      this.getUser(data.rider, 'rider')
-    }
-  }
-
-  getUser(id, type){
-    this.http.get(
-      this.helper.getApiUrl()+'dashboard/get_user/'+id,
-      {headers: this.helper.header()}
-    ).subscribe((data: any) => {
-      if(type == 'rider'){
-        this.rider = data.data
-      }
-      else{
-        this.customer = data.data
-      }
-    })
   }
 
   exportData(){

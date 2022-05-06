@@ -32,7 +32,7 @@ export class AuthService {
 
   login(values){
     return this.http.post<login>(
-      this.helper.getApiUrl()+'login/admin',
+      this.helper.getApiUrl()+'login',
       values,
       {headers: this.helper.header()}
     )

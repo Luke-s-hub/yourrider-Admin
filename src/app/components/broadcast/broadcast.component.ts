@@ -39,7 +39,7 @@ export class BroadcastComponent implements OnInit {
   send(){
     this.submit = true
     this.http.post(
-      this.helper.getApiUrl()+'users/send_all_user_notification',
+      this.helper.getApiUrl()+'notifications/send_all_user_notification',
       this.messageForm.value,
       {headers: this.helper.header()}
     ).subscribe((data: any) => {

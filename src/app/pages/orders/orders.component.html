@@ -9,7 +9,7 @@
                 <div class="wrapper text-center text-sm-left">
                   <p class="card-text mb-0">All Orders</p>
                   <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{orders.length}}</h3>
+                    <h3 class="mb-0 font-weight-medium">{{count}}</h3>
                   </div>
                 </div>
               </div>
@@ -33,9 +33,22 @@
               <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
                 <i class="mdi mdi-airplane-takeoff text-primary mr-0 mr-sm-4 icon-lg"></i>
                 <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">Accepted/Picked</p>
+                  <p class="card-text mb-0">Accepted</p>
                   <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{accepted_picked}}</h3>
+                    <h3 class="mb-0 font-weight-medium">{{accepted}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                <i class=" mdi mdi-recycle text-primary mr-0 mr-sm-4 icon-lg"></i>
+                <div class="wrapper text-center text-sm-left">
+                  <p class="card-text mb-0">Picked</p>
+                  <div class="fluid-container">
+                    <h3 class="mb-0 font-weight-medium">{{picked}}</h3>
                   </div>
                 </div>
               </div>
@@ -46,9 +59,9 @@
               <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
                 <i class="mdi mdi-checkbox-marked-circle-outline  text-primary mr-0 mr-sm-4 icon-lg"></i>
                 <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">Confirmed/Completed</p>
+                  <p class="card-text mb-0">Delivered</p>
                   <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{completed_confirmed}}</h3>
+                    <h3 class="mb-0 font-weight-medium">{{delivered}}</h3>
                   </div>
                 </div>
               </div>
@@ -110,7 +123,8 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>No of packages</th>
+                  <th>ID</th>
+                  <th>Item</th>
                   <th>Pickup location</th>
                   <th>Amount (NGN)</th>
                   <th>Delivery Type</th>
@@ -124,16 +138,19 @@
               <tbody>
                 <tr *ngFor="let item of views">
                   <td>
-                    {{item.packages.length}}
+                    {{item.order_id}}
                   </td>
-                  <td>{{helper.cutText(item.pickup.result.description, 50)}}</td>
+                  <td>
+                    {{item.name? item.name: ''}}
+                  </td>
+                  <td>{{item.pickup? helper.cutText(item.pickup.result.description, 50) : helper.cutText(item.pickup_data.result.description, 50)}}</td>
                   <td>{{item.amount}}</td>
-                  <td class="sentence">{{item.deliveryType}}</td>
-                  <td class="sentence">{{item.paymentType}}</td>
-                  <td>{{item.rider_name}}</td>
-                  <td>{{item.company}}</td>
+                  <td class="sentence">{{item.delivery_type}}</td>
+                  <td class="sentence">{{item.payment_type}}</td>
+                  <td>{{item.rider?.user.name}}</td>
+                  <td>{{item.rider?.company.company_name}}</td>
                   <td class="sentence">{{item.status}}</td>
-                  <td>{{item.date | date}}</td>
+                  <td>{{item.created_at | date}}</td>
                   <td>
                       <button (click)="view(item)" class="btn btn-success">View</button>
                   </td>
@@ -160,15 +177,19 @@
             <div class="col-md-6 col-lg-4">
                 <div class="item">
                   <label for="">Customer</label>
-                  <span class="value">{{customer? customer.name : 'Not available'}}</span>
+                  <span class="value">{{details.user.name}}</span>
                 </div>
                 <div class="item">
                   <label for="">Rider</label>
-                  <span class="value">{{rider? rider.name : 'Not available'}}</span>
+                  <span class="value">{{details.rider?.user.name}}</span>
                 </div>
                 <div class="item">
                   <label for="">Pickup location</label>
-                  <span class="value">{{details.pickup.result.description}}</span>
+                  <span class="value">{{details.pickup? details.pickup.result.description: details.pickup_data.result.description}}</span>
+                </div>
+                <div class="item">
+                  <label for="">Destination location</label>
+                  <span class="value">{{details.destination_data? details.destination_data.result.description: ''}}</span>
                 </div>
                 <div class="item">
                   <label for="">Amount [NGN]</label>
@@ -176,11 +197,11 @@
                 </div>
                 <div class="item">
                   <label for="">Delivery Type</label>
-                  <span class="value">{{details.deliveryType}}</span>
+                  <span class="value">{{details.delivery_type}}</span>
                 </div>
                 <div class="item">
                   <label for="">Payment Type</label>
-                  <span class="value">{{details.paymentType}}</span>
+                  <span class="value">{{details.payment_type}}</span>
                 </div>
                 <div class="item">
                   <label for="">Status</label>
@@ -188,11 +209,11 @@
                 </div>
                 <div class="item">
                   <label for="">Date Requested</label>
-                  <span class="value">{{details.date | date}}</span>
+                  <span class="value">{{details.created_at | date}}</span>
                 </div>
               </div>
         </div>
-        <div class="row">
+        <div *ngIf="details.packages" class="row">
             <div class="ml-3 mt-5">
                 <h4>Packages</h4>
             </div>

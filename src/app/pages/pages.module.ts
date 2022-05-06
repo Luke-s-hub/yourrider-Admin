@@ -9,10 +9,8 @@ import { VendorsComponent } from './vendors/vendors.component';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { CreatorsComponent } from './creators/creators.component';
 import { RiderCodeComponent } from './rider-code/rider-code.component';
-import { RiderCompanyComponent } from './rider-company/rider-company.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
-import { ApprovedCompaniesComponent } from './approved-companies/approved-companies.component';
 import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
 
 @NgModule({
@@ -22,10 +20,8 @@ import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-re
     CampaignsComponent,
     CreatorsComponent,
     RiderCodeComponent,
-    RiderCompanyComponent,
     OrdersComponent,
     ViewOrderComponent,
-    ApprovedCompaniesComponent,
     WithdrawalRequestsComponent
   ],
   imports: [

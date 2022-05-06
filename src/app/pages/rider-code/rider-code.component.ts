@@ -38,7 +38,7 @@ export class RiderCodeComponent implements OnInit {
 
   getCompany(){
     this.http.get(
-      this.helper.getApiUrl()+'dashboard/get_companies',
+      this.helper.getApiUrl()+'company/approved',
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.company = data.data

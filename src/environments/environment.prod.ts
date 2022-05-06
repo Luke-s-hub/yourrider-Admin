@@ -2,10 +2,10 @@ export const environment = {
   production: true,
   api: {
   	version: '1.0',
-    url: 'https://test.yourrider.com/api/',
+    url: 'https://api.yourrider.com/api/',
+    imageUrl: 'https://api.yourrider.com/',
     //url: 'http://192.168.43.203:80/api/',
     //url: 'http://10.0.2.2:8000/api/',
-    imageUrl: 'https://test.yourrider.com/',
   },
   firebase: {
     apiKey: "AIzaSyDZV-bq-pWtpIOVcEuIHKZYOaNOU_NWDSA",

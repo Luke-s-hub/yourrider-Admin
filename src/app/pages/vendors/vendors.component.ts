@@ -118,9 +118,9 @@ export class VendorsComponent implements OnInit {
       if(this.filterForm.value.quick){
         result = result.filter((value) => {
           if(
-            (value.user.name).toLowerCase().includes((this.filterForm.value.quick).toLowerCase())
+            (value.name).toLowerCase().includes((this.filterForm.value.quick).toLowerCase())
             ||
-            (value.user.email).toLowerCase().includes((this.filterForm.value.quick).toLowerCase())
+            (value.email).toLowerCase().includes((this.filterForm.value.quick).toLowerCase())
             ){
             return value
           }
@@ -132,7 +132,7 @@ export class VendorsComponent implements OnInit {
 
       if(this.filterForm.value.date){
         result = result.filter((value) => {
-          if(new Date(value.user.created_at) == new Date (this.filterForm.value.date)){
+          if(new Date(value.created_at) == new Date (this.filterForm.value.date)){
             return value
           }
         })
@@ -163,21 +163,6 @@ export class VendorsComponent implements OnInit {
     console.log(data)
   }
 
-  getTokenBalance(data){
-    let credit = 0
-    let debit = 0
-    if(data || data.length > 0){
-      data.forEach(element => {
-        credit += element.credit
-        debit += element.debit
-      });
-      return (credit - debit).toLocaleString()
-    }
-    else{
-      return 0
-    }
-  }
-
   credit(){
     this.showModal = false
     this.showCreditModal = true
@@ -192,15 +177,20 @@ export class VendorsComponent implements OnInit {
     if(!this.creditForm.value.amount || this.creditForm.value.amount < 1){
       return this.helper.showWarning('', 'Invalid amount')
     }
-    let user = this.details.user.id
+    let user = this.details.id
     let amount = this.creditForm.value.amount
     this.submitCredit = true
-    this.http.get(
-      this.helper.getApiUrl()+'payment/credit_token/'+user+'/'+amount,
+    this.http.post(
+      this.helper.getApiUrl()+'wallet/credit',
+      {
+        userId: user,
+        amount: amount,
+        service: 'Admin Credit'
+      },
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.submitCredit = false;
-      this.helper.showSuccess(this.details.user.name, data.message)
+      this.helper.showSuccess(this.details.name, data.message)
       this.getRiderStats()
       this.showCreditModal = false
     })
@@ -210,15 +200,20 @@ export class VendorsComponent implements OnInit {
     if(!this.debitForm.value.amount || this.debitForm.value.amount < 1){
       return this.helper.showWarning('', 'Invalid amount')
     }
-    let user = this.details.user.id
+    let user = this.details.id
     let amount = this.debitForm.value.amount
     this.submitDebit = true
-    this.http.get(
-      this.helper.getApiUrl()+'payment/debit_token/'+user+'/'+amount,
+    this.http.post(
+      this.helper.getApiUrl()+'wallet/debit',
+      {
+        userId: user,
+        amount: amount,
+        service: 'Admin Debit'
+      },
       {headers: this.helper.header()}
     ).subscribe((data: any) => {
       this.submitDebit = false;
-      this.helper.showSuccess(this.details.user.name, data.message)
+      this.helper.showSuccess(this.details.name, data.message)
       this.getRiderStats()
       this.showDebitModal = false
     })
@@ -228,13 +223,13 @@ export class VendorsComponent implements OnInit {
     let data = []
     this.views.forEach(element => {
       let temp = {
-        'Name' : element.user.name,
-        'Email' : element.user.email,
-        'Phone' : element.user.phone,
+        'Name' : element.name,
+        'Email' : element.email,
+        'Phone' : element.phone,
         'Company' : element.company.name,
         'Company ID' : element.code.code,
-        'Pending Payout' : this.getTokenBalance(element.user.token),
-        'Date Registered' : this.helper.formatDate(element.user.created_at)
+        'Pending Payout' : element.wallet.balance,
+        'Date Registered' : this.helper.formatDate(element.created_at)
       }
       data.push(temp)
     });

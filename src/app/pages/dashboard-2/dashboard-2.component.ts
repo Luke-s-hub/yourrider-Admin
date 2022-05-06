@@ -25,10 +25,6 @@ export class Dashboard2Component implements OnInit {
     private matDialog: MatDialog,
   ) {
     this.getDashboardStats()
-    this.afs.collection('orders', ref => ref.limit(10).orderBy('date', 'desc')).valueChanges().subscribe((data) => {
-      this.orders = data
-      console.log(data)
-    })
   }
 
   ngOnInit() {}

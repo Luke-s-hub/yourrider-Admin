@@ -52,7 +52,7 @@
             <div class="form">
               <select formControlName="company_id">
                 <option [value]="null">Select Company</option>
-                <option [value]="item.id" *ngFor="let item of company">{{item.name}}</option>
+                <option [value]="item.id" *ngFor="let item of company">{{item.company_name}}</option>
               </select>
             </div>
             <div class="form">
@@ -89,7 +89,7 @@
                       <td>
                         {{item.code}}
                       </td>
-                      <td>{{item.company.name}}</td>
+                      <td>{{item.company.company_name}}</td>
                       <td>{{item.status? 'Active' : 'Inactive'}}</td>
                       <td>{{item.created_at | date}}</td>
                       <td>
