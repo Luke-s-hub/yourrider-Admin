@@ -1,55 +1,76 @@
 <div class="row">
-    <div class="col-12 grid-margin">
-      <div class="card card-statistics">
-        <div class="row">
-          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">All Users</p>
-                  <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{creatorData.all.length}}</h3>
-                  </div>
+  <div class="col-12 grid-margin">
+    <div class="card card-statistics">
+      <div class="row">
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <i
+                class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"
+              ></i>
+              <div class="wrapper text-center text-sm-left">
+                <p class="card-text mb-0">All Users</p>
+                <div class="fluid-container">
+                  <h3 class="mb-0 font-weight-medium">
+                    {{ creatorData.all.length }}
+                  </h3>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">Active</p>
-                  <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{this.creatorData.active}}</h3>
-                  </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <i
+                class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"
+              ></i>
+              <div class="wrapper text-center text-sm-left">
+                <p class="card-text mb-0">Active</p>
+                <div class="fluid-container">
+                  <h3 class="mb-0 font-weight-medium">
+                    {{ this.creatorData.active }}
+                  </h3>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">Inactive</p>
-                  <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{creatorData.inactive}}</h3>
-                  </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <i
+                class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"
+              ></i>
+              <div class="wrapper text-center text-sm-left">
+                <p class="card-text mb-0">Inactive</p>
+                <div class="fluid-container">
+                  <h3 class="mb-0 font-weight-medium">
+                    {{ creatorData.inactive }}
+                  </h3>
                 </div>
               </div>
             </div>
           </div>
-          <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-            <div class="card-body">
-              <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>
-                <div class="wrapper text-center text-sm-left">
-                  <p class="card-text mb-0">Unverified</p>
-                  <div class="fluid-container">
-                    <h3 class="mb-0 font-weight-medium">{{creatorData.unverified}}</h3>
-                  </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>
+              <div class="wrapper text-center text-sm-left">
+                <p class="card-text mb-0">Unverified</p>
+                <div class="fluid-container">
+                  <h3 class="mb-0 font-weight-medium">
+                    {{ creatorData.unverified }}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -58,62 +79,108 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 grid-margin">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Users</h4>
-          <button [disabled]="creatorData.all.length < 1" (click)="exportData()" class="mt-3 mb-3 btn btn-primary">Export Data <i class="mdi mdi-file-excel-box"></i></button>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Date Registered</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of creatorData.all">
-                  <td>
-                    {{item.name}}
-                  </td>
-                  <td>{{item.email}}</td>
-                  <td>{{item.phone}}</td>
-                  <td>{{item.created_at | date}}</td>
-                  <td>
-                      <button (click)="updatePhone(item.id, item.phone)" class="btn btn-primary mr-2">Update phone</button>
-                      <button *ngIf="item.status" (click)="deactivate(item.id)" class="btn btn-danger">Deactivate</button>
-                      <button *ngIf="!item.status" (click)="activate(item.id)"  class="btn btn-success">Activate</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+</div>
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users</h4>
+        <div class="input-group">
+          <input type="text" (keyup)="search($event)" class="form-control py-4" placeholder="Search...">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="mdi mdi-search"></i>
+            </span>
           </div>
+        </div>
+        <button
+          [disabled]="creatorData.all.length < 1"
+          (click)="exportData()"
+          class="mt-3 mb-3 btn btn-primary"
+        >
+          Export Data <i class="mdi mdi-file-excel-box"></i>
+        </button>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date Registered</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of view">
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.phone }}</td>
+                <td>{{ item.created_at | date }}</td>
+                <td>
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button
+                      (click)="updatePhone(item.id, item.phone)"
+                      mat-menu-item
+                    >
+                      <span>Update phone</span>
+                    </button>
+                    <button
+                      *ngIf="item.status"
+                      (click)="deactivate(item.id)"
+                      mat-menu-item
+                    >
+                      <span class="text-danger">Deactivate</span>
+                    </button>
+                    <button
+                      *ngIf="!item.status"
+                      (click)="activate(item.id)"
+                      mat-menu-item
+                    >
+                      <span>Activate</span>
+                    </button>
+                    <button (click)="message(item.id)" mat-menu-item>
+                      <span>Message</span>
+                    </button>
+                  </mat-menu>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-
-  <div *ngIf="showPhoneModal" class="overlay">
-    <div class="tokenmodal">
-      <div class="mb-5 close">
-        <i (click)="showPhoneModal = false" class="mdi cursor-pointer mdi-close-box text-right"></i>
-      </div>
-      <div class="body">
-        <h4>Update phone</h4>
-        <div class="form-area mt-3">
-          <form [formGroup]="phoneForm" (ngSubmit)="processPhone()">
-            <input type="text" formControlName="phone" placeholder="Enter phone number">
-            <button type="submit" class="btn btn-primary btn-sm mt-3">
-              <span *ngIf="!submitPhone">Update</span>
-              <span *ngIf="submitPhone">Please wait...</span>
-            </button>
-          </form>
-        </div>
+<div *ngIf="showPhoneModal" class="overlay">
+  <div class="tokenmodal">
+    <div class="mb-5 close">
+      <i
+        (click)="showPhoneModal = false"
+        class="mdi cursor-pointer mdi-close-box text-right"
+      ></i>
+    </div>
+    <div class="body">
+      <h4>Update phone</h4>
+      <div class="form-area mt-3">
+        <form [formGroup]="phoneForm" (ngSubmit)="processPhone()">
+          <input
+            type="text"
+            formControlName="phone"
+            placeholder="Enter phone number"
+          />
+          <button type="submit" class="btn btn-primary btn-sm mt-3">
+            <span *ngIf="!submitPhone">Update</span>
+            <span *ngIf="submitPhone">Please wait...</span>
+          </button>
+        </form>
       </div>
     </div>
   </div>
+</div>

@@ -12,6 +12,7 @@ import { RiderCodeComponent } from './rider-code/rider-code.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-requests.component';
+import { PostRequestComponent } from './post-request/post-request.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { WithdrawalRequestsComponent } from './withdrawal-requests/withdrawal-re
     RiderCodeComponent,
     OrdersComponent,
     ViewOrderComponent,
-    WithdrawalRequestsComponent
+    WithdrawalRequestsComponent,
+    PostRequestComponent
   ],
   imports: [
     CommonModule,

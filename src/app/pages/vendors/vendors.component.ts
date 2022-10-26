@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BroadcastComponent } from 'src/app/components/broadcast/broadcast.component';
 import { ExcelService } from 'src/app/services/excel.service';
 import { HelperService } from 'src/app/services/helper/helper.service';
 
@@ -51,7 +53,8 @@ export class VendorsComponent implements OnInit {
     public helper: HelperService,
     private http: HttpClient,
     private router: Router,
-    private excelService: ExcelService
+    private excelService: ExcelService,
+    private matDialog: MatDialog
   ) { 
     this.getRiderStats()
     this.getCompany()
@@ -254,5 +257,14 @@ export class VendorsComponent implements OnInit {
       this.helper.showSuccess('Success', data.message)
       this.getRiderStats()
     })
+  }
+
+  message(id) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { id };
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = "400px";
+    let dialogRef = this.matDialog.open(BroadcastComponent, dialogConfig);
+    return dialogRef;
   }
 }

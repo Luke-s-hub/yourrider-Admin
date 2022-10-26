@@ -108,10 +108,40 @@
                   <td>{{item.wallet.balance}}</td>
                   <td>{{item.created_at | date}}</td>
                   <td>
-                    <button (click)="viewInfo(item)" class="btn btn-success mr-1">View Info</button>
-                    <button (click)="updatePhone(item.id, item.phone)" class="btn btn-primary mr-1">Update phone</button>
-                    <button *ngIf="item.status" (click)="deactivate(item.id)" class="btn btn-danger">Deactivate</button>
-                    <button *ngIf="!item.status" (click)="activate(item.id)"  class="btn btn-success">Activate</button>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button
+                      (click)="viewInfo(item)"
+                        mat-menu-item
+                      >
+                        <span>Manage</span>
+                      </button>
+                      <button
+                        (click)="updatePhone(item.id, item.phone)"
+                        mat-menu-item
+                      >
+                        <span>Update phone</span>
+                      </button>
+                      <button
+                        *ngIf="item.status"
+                        (click)="deactivate(item.id)"
+                        mat-menu-item
+                      >
+                        <span class="text-danger">Deactivate</span>
+                      </button>
+                      <button
+                        *ngIf="!item.status"
+                        (click)="activate(item.id)"
+                        mat-menu-item
+                      >
+                        <span>Activate</span>
+                      </button>
+                      <button (click)="message(item.id)" mat-menu-item>
+                        <span>Message</span>
+                      </button>
+                    </mat-menu>
                 </td>
                 </tr>
               </tbody>

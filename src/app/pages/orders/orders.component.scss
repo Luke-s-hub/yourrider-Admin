@@ -77,3 +77,42 @@ form{
         }
     }
 }
+
+.rider-wrapper{
+    position: relative;
+
+    .rider-search{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #4375E2;
+        padding: 15px;
+
+        ul{
+            list-style-type: none;
+            margin: 15px 0;
+            padding: 0;
+
+            li{
+                margin-top: 10px;
+                color: #fff;
+                border-bottom: 1px solid #fff;
+            }
+        }
+    }
+}
+
+.location-form{
+    .row{
+        align-items: center;
+    }
+    .form{
+        margin: 10px;
+        input, select{
+            width: 100%;
+            border: unset;
+            background-color: #fff;
+            padding: 10px 15px;
+        }
+    }
+}

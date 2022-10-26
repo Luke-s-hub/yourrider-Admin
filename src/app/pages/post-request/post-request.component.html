@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card card-statistics">
+      <div class="row">
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <div class="wrapper text-center text-sm-left">
+                <div class="fluid-container">
+                  <button
+                    (click)="downloadFormat()"
+                    class="mt-2 btn btn-primary"
+                  >
+                    Download Template
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <div class="wrapper text-center text-sm-left">
+                <div class="fluid-container">
+                  <button
+                    (click)="downloadRidersId()"
+                    class="mt-2 btn btn-warning"
+                  >
+                    Download Rider IDs
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <div class="wrapper text-center text-sm-left">
+                <p class="card-text mb-0"></p>
+                <div class="fluid-container">
+                  <button
+                    (click)="downloadCompaniesId()"
+                    class="mt-2 btn btn-info"
+                  >
+                    Download Company IDs
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
+          <div class="card-body">
+            <div
+              class="d-flex align-items-center justify-content-center flex-column flex-sm-row"
+            >
+              <div class="wrapper text-center text-sm-left">
+                <div class="fluid-container">
+                  <div class="uploader">
+                    <input
+                      #fileInput
+                      (change)="fileProgress($event)"
+                      type="file"
+                      class="file-input"
+                    />
+                    <button
+                      type="button"
+                      (click)="selectFile()"
+                      class="mt-2 btn btn-success"
+                    >
+                      {{ label }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="submit" class="row mt-5">
+  <div class="col-12">
+    <div class="loading">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="mt-2">uploading. please wait...</p>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!submit && errors.length > 0" class="row mt-5">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Upload errors</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered text-danger">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Error</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of errors">
+                <td>
+                  {{item.product}}
+                </td>
+                <td>{{item.message}}</td>
+                <td>{{item.details}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
