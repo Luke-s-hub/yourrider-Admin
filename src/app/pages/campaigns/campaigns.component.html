@@ -36,6 +36,7 @@
                   <th>Company State</th>
                   <th>Opted Insurance</th>
                   <th>Document</th>
+                  <th>Photo</th>
                   <th>Date</th>
                   <th>Action</th>
                 </tr>
@@ -49,7 +50,8 @@
                   <td>{{item.company_phone}}</td>
                   <td>{{item.company_state}}</td>
                   <td>{{item.insurance? 'Yes':'No'}}</td>
-                  <td><a target="_blank" [href]="helper.getApiImageLink()+item.document">View</a></td>
+                  <td><a target="_blank" [href]="helper.getApiImageLink()+item.document_registration">View</a></td>
+                  <td><a target="_blank" [href]="helper.getApiImageLink()+item.manager_photo">View</a></td>
                   <td>{{item.created_at | date}}</td>
                   <td>
                     <button *ngIf="!item.verified" (click)="approve(item.id)" class="btn btn-sm btn-success mr-1">Approve</button>

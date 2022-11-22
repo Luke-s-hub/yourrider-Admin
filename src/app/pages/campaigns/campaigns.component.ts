@@ -61,8 +61,8 @@ export class CampaignsComponent implements OnInit {
         'Manager Identification Type' : element.manager_id_type,
         'Manager Identification Number' : element.manager_id_number,
         'Manager Photo Link' : this.helper.getApiImageLink()+element.manager_photo,
-        'CAC Document Link' : this.helper.getApiImageLink()+element.cac_certificate,
-        'Operation Location' : this.getOperationLocation(element.operation_location),
+        'CAC Document Link' : this.helper.getApiImageLink()+element.document_registration,
+        'Operation Location' : this.getOperationLocation(element.company_state),
         'Tax ID Number' : element.tax_id_number,
         'Date Registered' : this.helper.formatDate(element.created_at)
       }
