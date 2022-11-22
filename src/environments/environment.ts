@@ -6,12 +6,12 @@ export const environment = {
   production: false.valueOf,
   api: {
   	version: '1.0',
-  	url: 'http://yrapi.test/api/',
-    imageUrl: 'http://yrapi.test/',
+  	// url: 'http://yrapi.test/api/',
+    // imageUrl: 'http://yrapi.test/',
   	//url: 'http://192.168.43.203:80/api/',
   	//url: 'https://api.yourrider.com/api/',
-    // url: 'https://api.yourrider.com/api/',
-    // imageUrl: 'https://api.yourrider.com/images/',
+    url: 'https://api.yourrider.com/api/',
+    imageUrl: 'https://api.yourrider.com/',
   },
   firebase: {
     apiKey: "AIzaSyDZV-bq-pWtpIOVcEuIHKZYOaNOU_NWDSA",
